@@ -117,7 +117,7 @@ INSTALLED_APPS = [
 
 3. create a ``templates`` folder for your application
 ```sh
-  mkdir APP/templates
+mkdir APP/templates
 ```
 
 4. insert an ``index.html`` into the templates folder
