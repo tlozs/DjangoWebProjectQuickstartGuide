@@ -16,11 +16,11 @@ py -m pip install --user -U Django
 
 # 1. Creating and cloning GitHub remote repo
 
-1. create a repo on github.com
-2. add python .gitignore template
+1. create a repo on **github.com**
+2. add python **.gitignore** template
 3. clone the created repo to the local machine:
 ```sh
-git clone https://github.com/ATEGITHUBFIÓKOD/REPONEVE.git
+git clone REPOADRESS
 ```
 
 # 2. Initializing VENV
@@ -120,7 +120,7 @@ INSTALLED_APPS = [
 
 4. insert an ``index.html`` into the templates folder
 
-5. create a view for the template
+5. create a view for the template in ``views.py``
 ```py
 def index(request):
     template='index.html'
@@ -128,7 +128,7 @@ def index(request):
     return render(request, template, context)
 ```
 
-6. register a template url
+6. register a template url in ``urls.py``
 ```py
 # you need to import the view
 from APP.views import index
