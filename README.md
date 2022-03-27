@@ -9,9 +9,9 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 # 0. Installing VENV and Django
 
 ```sh
-	py -m pip install --user --upgrade pip
-	py -m pip install --user virtualenv
-	py -m pip install --user -U Django
+py -m pip install --user --upgrade pip
+py -m pip install --user virtualenv
+py -m pip install --user -U Django
 ```
 
 # 1. Creating and cloning GitHub remote repo
@@ -20,39 +20,39 @@ Set-ExecutionPolicy Unrestricted -Scope Process
 2. add python .gitignore template
 3. clone the created repo to the local machine:
 ```sh
-	git clone https://github.com/ATEGITHUBFIÓKOD/REPONEVE.git
+git clone https://github.com/ATEGITHUBFIÓKOD/REPONEVE.git
 ```
 
 # 2. Initializing VENV
 
 1. create a virtual enviroment with name ``VENV`` next to the repo, not inside the repo
 ```sh
-	virtualenv -p python3 VENV
+virtualenv -p python3 VENV
 ```
 
 2. activate VENV
 ```sh
-	.\VENV\Scripts\activate
+.\VENV\Scripts\activate
 ```
 
 3. install the requirements
 ```sh
-  py -m pip install --upgrade pip
-  py -m pip install django
-  py -m pip install gunicorn
-  py -m pip install dj-database-url
-  py -m pip install whitenoise
-  py -m pip install django-rest-framework
+py -m pip install --upgrade pip
+py -m pip install django
+py -m pip install gunicorn
+py -m pip install dj-database-url
+py -m pip install whitenoise
+py -m pip install django-rest-framework
 ```
 
 4. see what's inside
 ```sh
-  pip freeze
+pip freeze
 ```
 
 5. navigate inside the repo
 ```sh
-  cd REPONAME
+cd REPONAME
 ```
 
 # 3. Start project and see it working
@@ -76,12 +76,12 @@ py manage.py runserver
 
 1. prepare changes for migration
 ```sh
-  py manage.py makemigrations
+py manage.py makemigrations
 ```
 
 2. migrate changes
 ```sh
-  py manage.py migrate
+py manage.py migrate
 ```
 
 # 5. Create an admin profile
