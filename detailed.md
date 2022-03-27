@@ -1,5 +1,5 @@
 # DjangoWebProjectQuickstartGuide
-Guide on how to start a Django web project using git(hub) and python.
+Detailed guide on how to start a Django web project using git(hub) and python.
 
 You may need to edit the ``ExecutionPolicy`` to be able to run some commands:
 ```sh
