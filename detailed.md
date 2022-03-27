@@ -55,7 +55,7 @@ pip freeze
 cd REPONAME
 ```
 
-# 3. Start project and see it working
+# 3. Start a project and see it working
 
 1. start a Django project with name ``PROJEKT`` inside the repo
 ```sh
@@ -119,8 +119,11 @@ INSTALLED_APPS = [
 ```
 
 4. insert an ``index.html`` into the templates folder
+```sh
+New-Item -Path 'APP/templates/index.html' - ItemType File
+```
 
-5. create a view for the template in ``views.py``
+5. create a view for the template in ``APP/views.py``
 ```py
 def index(request):
     template='index.html'
