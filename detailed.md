@@ -93,7 +93,7 @@ py manage.py createsuperuser
 
 2. the admin site is found on ``127.0.0.1:8000/admin`` or ``localhost:8000/admin`` by default
 
-3. you may need to repeat step 4 to migrate database changes again
+3. you may need to repeat **step 4** to migrate database changes again
 
 # 6. Create and register an application called ``APP``
 
