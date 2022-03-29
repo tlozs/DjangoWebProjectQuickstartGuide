@@ -102,7 +102,17 @@ py manage.py createsuperuser
 django-admin startapp APP
 ```
 
-2. register it in ``settings.py``
+2. create a ``templates`` folder for your application
+```sh
+mkdir APP/templates
+```
+
+3. insert an ``index.html`` into the templates folder
+```sh
+New-Item -Path 'APP/templates/index.html' - ItemType File
+```
+
+4. register it in ``settings.py``
 ```py
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -113,16 +123,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'APP',
 ]
-```
-
-3. create a ``templates`` folder for your application
-```sh
-mkdir APP/templates
-```
-
-4. insert an ``index.html`` into the templates folder
-```sh
-New-Item -Path 'APP/templates/index.html' - ItemType File
 ```
 
 5. create a view for the template in ``APP/views.py``
