@@ -27,7 +27,7 @@ git clone REPOADRESS
 
 1. create a virtual enviroment with name ``VENV`` next to the repo, not inside the repo
 ```sh
-virtualenv -p python3 VENV
+py -m virtualenv -p python3 VENV
 ```
 
 2. activate VENV
