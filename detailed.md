@@ -146,7 +146,7 @@ urlpatterns = [
 ]
 ```
 
-# 7. Add static files to it
+# 7. Add static files to your ``APP``
 
 1. create a static folder in your APP with css and js subfolders
 ```sh
@@ -170,12 +170,13 @@ New-Item -Path 'APP/static/js/script.js' -ItemType File
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
 
 <!-- you refer to the static files in this way -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <script src="{% static 'js/script.js' %}"></script>
-<!-- -->
 
 </head>
 <body>
