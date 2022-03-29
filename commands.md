@@ -41,6 +41,34 @@ New-Item -Path 'APP/templates/index.html' -ItemType File
 ```
 
 # 6. Register APP in ``settings.py``, ``urls.py``, ``views.py``
+```py
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'APP',
+]
+```
+```py
+def index(request):
+    template='index.html'
+    context={}
+    return render(request, template, context)
+```
+```py
+# you need to import the view
+from APP.views import index
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    
+    # and define a url for it
+    path('', index),
+]
+```
 
 # 7. Add static files to APP and link them
 ```sh
