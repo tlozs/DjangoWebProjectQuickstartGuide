@@ -41,3 +41,17 @@ New-Item -Path 'APP/templates/index.html' -ItemType File
 ```
 
 # 6. Register APP in ``settings.py``, ``urls.py``, ``views.py``
+
+# 7. Add static files to APP and link them
+```sh
+mkdir APP/static
+mkdir APP/static/css
+mkdir APP/static/js
+New-Item -Path 'APP/static/css/style.css' -ItemType File
+New-Item -Path 'APP/static/js/script.js' -ItemType File
+```
+```html
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<script src="{% static 'js/script.js' %}"></script>
+```
