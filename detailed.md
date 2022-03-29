@@ -109,7 +109,7 @@ mkdir APP/templates
 
 3. insert an ``index.html`` into the templates folder
 ```sh
-New-Item -Path 'APP/templates/index.html' - ItemType File
+New-Item -Path 'APP/templates/index.html' -ItemType File
 ```
 
 4. register it in ``settings.py``
@@ -146,8 +146,43 @@ urlpatterns = [
 ]
 ```
 
+# 7. Add static files to it
 
+1. create a static folder in your APP with css and js subfolders
+```sh
+mkdir APP/static
+mkdir APP/static/css
+mkdir APP/static/js
+```
 
+2. create the css and js files
+```sh
+New-Item -Path 'APP/static/css/style.css' -ItemType File
+New-Item -Path 'APP/static/js/script.js' -ItemType File
+```
+
+3. link the static files to your template
+```html
+<!-- this row at the beginning is needed -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<!-- you refer to the static files in this way -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+<!-- -->
+
+</head>
+<body>
+    <h1>Hello Django</h1>
+</body>
+</html>
+```
 
 
 
