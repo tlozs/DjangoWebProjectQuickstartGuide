@@ -17,7 +17,7 @@ git clone REPOADRESS
 
 # 4. VENV
 ```sh
-virtualenv -p python3 VENV
+py -m virtualenv -p python3 VENV
 .\VENV\Scripts\activate
 py -m pip install --upgrade pip
 py -m pip install django
