@@ -32,12 +32,12 @@ cd REPONAME
 ```sh
 django-admin startproject PROJEKT
 cd PROJEKT
-py manage.py createsuperuser
 py manage.py makemigrations
 py manage.py migrate
+py manage.py createsuperuser
 django-admin startapp APP
 mkdir APP/templates
-New-Item -Path 'APP/templates/index.html' - ItemType File
+New-Item -Path 'APP/templates/index.html' -ItemType File
 ```
 
 # 6. Register APP in ``settings.py``, ``urls.py``, ``views.py``
