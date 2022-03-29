@@ -40,7 +40,7 @@ mkdir APP/templates
 New-Item -Path 'APP/templates/index.html' -ItemType File
 ```
 
-# 6. Register APP in ``settings.py``, ``urls.py``, ``views.py``
+# 6. Register APP in ``settings.py``, ``urls.py``, ``views.py`` respectively
 ```py
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -53,12 +53,6 @@ INSTALLED_APPS = [
 ]
 ```
 ```py
-def index(request):
-    template='index.html'
-    context={}
-    return render(request, template, context)
-```
-```py
 # you need to import the view
 from APP.views import index
 
@@ -68,6 +62,12 @@ urlpatterns = [
     # and define a url for it
     path('', index),
 ]
+```
+```py
+def index(request):
+    template='index.html'
+    context={}
+    return render(request, template, context)
 ```
 
 # 7. Add static files to APP and link them
