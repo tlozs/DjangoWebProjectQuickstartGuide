@@ -12,6 +12,7 @@ py -m pip install whitenoise
 py -m pip install psycopg2-binary
 cd REPONAME
 
+django-admin startproject PROJEKT
 mv PROJEKT/*.* ./
 mv PROJEKT/PROJEKT/* PROJEKT/
 rmdir .\PROJEKT\PROJEKT\
@@ -35,7 +36,6 @@ register app and link static files
 
 settings.py bottom:
 ```py
-code settings.py
 # ez a MIDDLEWARES közé:
 'whitenoise.middleware.WhiteNoiseMiddleware',
 
