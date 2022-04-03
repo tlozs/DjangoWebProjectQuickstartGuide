@@ -49,9 +49,9 @@ New-Item -Path 'APP/templates/index.html' -ItemType File
 New-Item -Path 'APP/static/css/style.css' -ItemType File
 New-Item -Path 'APP/static/js/script.js' -ItemType File
 code .
-code settings.py
-code urls.py
-code views.py
+code PROJEKT/settings.py
+code PROJEKT/urls.py
+code APP/views.py
 code APP/templates/index.html
 ```
 
