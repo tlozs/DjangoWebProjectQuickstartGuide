@@ -26,6 +26,7 @@ py -m pip install dj-database-url
 py -m pip install whitenoise
 py -m pip install django-rest-framework
 py -m pip install psycopg2-binary
+
 cd REPONAME
 ```
 
