@@ -135,6 +135,7 @@ heroku create HEROKUREMOTE
 
 # 10. push to heroku
 ```sh
+git push origin main
 git push heroku main
 heroku run python manage.py migrate
 heroku run python manage.py createsuperuser
