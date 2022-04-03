@@ -134,7 +134,7 @@ code APP/views.py
 code APP/templates/index.html
 ```
 
-5. register the APP in ``settings.py``
+6. register the APP in ``settings.py``
 ```py
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -147,7 +147,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-6. create a view for the template in ``APP/views.py``
+7. create a view for the template in ``APP/views.py``
 ```py
 def index(request):
     template='index.html'
@@ -155,7 +155,7 @@ def index(request):
     return render(request, template, context)
 ```
 
-7. register a template url in ``urls.py``
+8. register a template url in ``urls.py``
 ```py
 # you need to import the view
 from APP.views import index
@@ -168,7 +168,7 @@ urlpatterns = [
 ]
 ```
 
-8. link the static files to your template
+9. link the static files to your template
 ```html
 {% load static %}
 <!DOCTYPE html>
