@@ -135,6 +135,8 @@ heroku create HEROKUREMOTE
 
 # 10. push to heroku
 ```sh
+git add .
+git commit -m "Django-project created"
 git push origin main
 git push heroku main
 heroku run python manage.py migrate
