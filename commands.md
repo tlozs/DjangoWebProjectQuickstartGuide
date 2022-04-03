@@ -25,10 +25,14 @@ py -m pip install gunicorn
 py -m pip install dj-database-url
 py -m pip install whitenoise
 py -m pip install django-rest-framework
+py -m pip install psycopg2-binary
 cd REPONAME
+mv PROJEKT/*.* ./
+mv PROJEKT/PROJEKT/* PROJEKT/
+rmdir .\PROJEKT\PROJEKT\
 ```
 
-# 5. Start project
+# 5. Start project with static files
 ```sh
 django-admin startproject PROJEKT
 cd PROJEKT
@@ -37,7 +41,18 @@ py manage.py migrate
 py manage.py createsuperuser
 django-admin startapp APP
 mkdir APP/templates
+mkdir APP/static
+mkdir APP/static/css
+mkdir APP/static/js
+mkdir APP/static/images
 New-Item -Path 'APP/templates/index.html' -ItemType File
+New-Item -Path 'APP/static/css/style.css' -ItemType File
+New-Item -Path 'APP/static/js/script.js' -ItemType File
+code .
+code settings.py
+code urls.py
+code views.py
+code APP/templates/index.html
 ```
 
 # 6. Register APP in ``settings.py``, ``urls.py``, ``views.py`` respectively
@@ -70,16 +85,93 @@ def index(request):
     return render(request, template, context)
 ```
 
-# 7. Add static files to APP and link them
-```sh
-mkdir APP/static
-mkdir APP/static/css
-mkdir APP/static/js
-New-Item -Path 'APP/static/css/style.css' -ItemType File
-New-Item -Path 'APP/static/js/script.js' -ItemType File
-```
+# 7. link static files
 ```html
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 <script src="{% static 'js/script.js' %}"></script>
 ```
+
+# 8. Heroku stuff in ``settings.py``: modify host settings, add whitenoise to ``MIDDLEWARE`` and the rest to the end of the file
+```py
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+ALLOWED_HOSTS = ['HEROKUREMOTE.herokuapp.com', '127.0.0.1']
+```
+```py
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+```
+```py
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+STATICFILES_DIRS = [
+    BASE_DIR/'static'
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+```
+
+# 9.  heroku configs, replace ``HEROKUREMOTE`` with your actual webpage name you want it to be and set the encoding of the opened files to ``UTF8``
+```sh
+mkdir staticfiles
+echo "bla" > staticfiles/nelegyenures.txt
+echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
+echo python-3.8.11 > runtime.txt
+pip freeze > requirements.txt
+code Procfile
+code runtime.txt
+code requirements.txt
+
+heroku create HEROKUREMOTE
+```
+
+# 10. push to heroku
+```sh
+git push heroku main
+heroku run python manage.py migrate
+heroku run python manage.py createsuperuser
+heroku open
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
