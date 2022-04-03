@@ -43,6 +43,7 @@ py -m pip install gunicorn
 py -m pip install dj-database-url
 py -m pip install whitenoise
 py -m pip install django-rest-framework
+py -m pip install psycopg2-binary
 ```
 
 4. see what's inside
@@ -62,9 +63,11 @@ cd REPONAME
 django-admin startproject PROJEKT
 ```
 
-2. navigate to the folder in which ``manage.py`` is located
+2. reorganize file hierarchy
 ```sh
-cd PROJEKT
+mv PROJEKT/*.* ./
+mv PROJEKT/PROJEKT/* PROJEKT/
+rmdir .\PROJEKT\PROJEKT\
 ```
 
 3. run the server and see if it's working on ``127.0.0.1:8000`` or ``localhost:8000`` (they are the same)
@@ -107,12 +110,31 @@ django-admin startapp APP
 mkdir APP/templates
 ```
 
-3. insert an ``index.html`` into the templates folder
+3. create ``static`` folders
 ```sh
-New-Item -Path 'APP/templates/index.html' -ItemType File
+mkdir APP/static
+mkdir APP/static/css
+mkdir APP/static/js
+mkdir APP/static/images
 ```
 
-4. register it in ``settings.py``
+4. insert an ``index.html`` into the ``templates`` folder and static files into the ``static`` folder
+```sh
+New-Item -Path 'APP/templates/index.html' -ItemType File
+New-Item -Path 'APP/static/css/style.css' -ItemType File
+New-Item -Path 'APP/static/js/script.js' -ItemType File
+```
+
+5. open files with VSCode
+```sh
+code .
+code PROJEKT/settings.py
+code PROJEKT/urls.py
+code APP/views.py
+code APP/templates/index.html
+```
+
+5. register the APP in ``settings.py``
 ```py
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -125,7 +147,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-5. create a view for the template in ``APP/views.py``
+6. create a view for the template in ``APP/views.py``
 ```py
 def index(request):
     template='index.html'
@@ -133,7 +155,7 @@ def index(request):
     return render(request, template, context)
 ```
 
-6. register a template url in ``urls.py``
+7. register a template url in ``urls.py``
 ```py
 # you need to import the view
 from APP.views import index
@@ -146,41 +168,21 @@ urlpatterns = [
 ]
 ```
 
-# 7. Add static files to your ``APP``
-
-1. create a static folder in your APP with css and js subfolders
-```sh
-mkdir APP/static
-mkdir APP/static/css
-mkdir APP/static/js
-```
-
-2. create the css and js files
-```sh
-New-Item -Path 'APP/static/css/style.css' -ItemType File
-New-Item -Path 'APP/static/js/script.js' -ItemType File
-```
-
-3. link the static files to your template
+8. link the static files to your template
 ```html
-<!-- this row at the beginning is needed -->
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
-
-<!-- you refer to the static files in this way -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <script src="{% static 'js/script.js' %}"></script>
-
+    <title>Title</title>
 </head>
 <body>
-    <h1>Hello Django</h1>
+    
 </body>
 </html>
 ```
