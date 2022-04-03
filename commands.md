@@ -27,15 +27,14 @@ py -m pip install whitenoise
 py -m pip install django-rest-framework
 py -m pip install psycopg2-binary
 cd REPONAME
-mv PROJEKT/*.* ./
-mv PROJEKT/PROJEKT/* PROJEKT/
-rmdir .\PROJEKT\PROJEKT\
 ```
 
 # 5. Start project with static files
 ```sh
 django-admin startproject PROJEKT
-cd PROJEKT
+mv PROJEKT/*.* ./
+mv PROJEKT/PROJEKT/* PROJEKT/
+rmdir .\PROJEKT\PROJEKT\
 py manage.py makemigrations
 py manage.py migrate
 py manage.py createsuperuser
