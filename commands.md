@@ -68,13 +68,10 @@ INSTALLED_APPS = [
 ]
 ```
 ```py
-# you need to import the view
 from APP.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
-    # and define a url for it
     path('', index),
 ]
 ```
