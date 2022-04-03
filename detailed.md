@@ -98,7 +98,7 @@ py manage.py createsuperuser
 
 3. you may need to repeat **step 4** to migrate database changes again
 
-# 6. Create and register an application called ``APP``
+# 6. Create and register an application called ``APP`` with basic static files
 
 1. create it using this command
 ```sh
@@ -168,7 +168,7 @@ urlpatterns = [
 ]
 ```
 
-9. link the static files to your template
+9. link the static files to your template in ``index.html``
 ```html
 {% load static %}
 <!DOCTYPE html>
@@ -187,14 +187,73 @@ urlpatterns = [
 </html>
 ```
 
+# 7. Prepare for the host with heroku
 
+1. turn off debug mode when releasing the production server and set the allowed hosts
+```py
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
 
+ALLOWED_HOSTS = ['HEROKUREMOTE.herokuapp.com', '127.0.0.1']
+```
 
+2. register whitenoise to the middlewares
+```py
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+```
 
+3. heroku database, add this to the end of ``settings.py``
+```py
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+STATICFILES_DIRS = [
+    BASE_DIR/'static'
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+```
 
+4. add heroku config files, save them with ``UTF8`` encoding
+```sh
+mkdir staticfiles
+echo "bla" > staticfiles/nelegyenures.txt
+echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
+echo python-3.8.11 > runtime.txt
+pip freeze > requirements.txt
+code Procfile
+code runtime.txt
+code requirements.txt
+```
 
+5. create your webpage, use your preferred name instead of ``HEROKUREMOTE``
+```sh
+heroku create HEROKUREMOTE
+```
 
+6. push your site to heroku
+```sh
+git add .
+git commit -m "Django-project created"
+git push origin main
+git push heroku main
+```
 
+7. create remote databases and open your website
+```sh
+heroku run python manage.py migrate
+heroku run python manage.py createsuperuser
+heroku open
+```
 
 
 
