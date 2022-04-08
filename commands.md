@@ -129,7 +129,7 @@ DATABASES['default'].update(db_from_env)
 STATICFILES_DIRS = [
     BASE_DIR/'static'
 ]
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 ```
 
 # 9.  heroku configs, replace ``HEROKUREMOTE`` with your actual webpage name you want it to be and set the encoding of the opened files to ``UTF8``
