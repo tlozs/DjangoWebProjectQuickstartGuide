@@ -134,7 +134,7 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 # 9.  heroku configs, replace ``HEROKUREMOTE`` with your actual webpage name you want it to be and set the encoding of the opened files to ``UTF8``
 ```sh
-mkdir staticfiled
+mkdir staticfiles
 echo "bla" > staticfiles/nelegyenures.txt
 echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
 echo python-3.8.11 > runtime.txt
