@@ -126,16 +126,13 @@ MIDDLEWARE = [
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-STATICFILES_DIRS = [
-    BASE_DIR/'static'
-]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
 ```
 
 # 9.  heroku configs, replace ``HEROKUREMOTE`` with your actual webpage name you want it to be and set the encoding of the opened files to ``UTF8``
 ```sh
-mkdir staticfiles
-echo "bla" > staticfiles/nelegyenures.txt
+mkdir static
+echo "bla" > static/nelegyenures.txt
 echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
 echo python-3.8.11 > runtime.txt
 pip freeze > requirements.txt
