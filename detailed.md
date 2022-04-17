@@ -201,14 +201,15 @@ ALLOWED_HOSTS = ['HEROKUREMOTE.herokuapp.com', '127.0.0.1']
 ```py
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 ```
 
@@ -217,16 +218,13 @@ MIDDLEWARE = [
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-STATICFILES_DIRS = [
-    BASE_DIR/'static'
-]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
 ```
 
 4. add heroku config files, save them with ``UTF8`` encoding
 ```sh
-mkdir staticfiles
-echo "bla" > staticfiles/nelegyenures.txt
+mkdir static
+echo "bla" > static/nelegyenures.txt
 echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
 echo python-3.8.11 > runtime.txt
 pip freeze > requirements.txt
