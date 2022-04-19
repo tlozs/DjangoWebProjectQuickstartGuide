@@ -241,7 +241,7 @@ heroku create HEROKUREMOTE
 6. push your site to heroku
 ```sh
 git add .
-git commit -m "Django-project created"
+git commit -m "Heroku app created"
 git push origin main
 git push heroku main
 ```
