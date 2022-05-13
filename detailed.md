@@ -134,16 +134,16 @@ code APP/views.py
 code APP/templates/index.html
 ```
 
-6. register the APP in ``settings.py``
+6. register the APP in ``settings.py`` (the order of apps is important)
 ```py
 INSTALLED_APPS = [
+    'APP',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'APP',
 ]
 ```
 
