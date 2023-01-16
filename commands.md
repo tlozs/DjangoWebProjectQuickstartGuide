@@ -53,6 +53,7 @@ code PROJEKT/settings.py
 code PROJEKT/urls.py
 code APP/views.py
 code APP/templates/index.html
+
 ```
 
 # 6. Register APP in ``settings.py``, ``urls.py``, ``views.py`` respectively
