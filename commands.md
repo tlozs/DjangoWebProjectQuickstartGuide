@@ -102,63 +102,13 @@ def index(request):
 </html>
 ```
 
-# 8. Heroku stuff in ``settings.py``: modify host settings, add whitenoise to ``MIDDLEWARE`` and the rest to the end of the file
+# 8. Update ``settings.py`` allowed hosts
 ```py
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['HEROKUREMOTE.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 ```
-```py
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-```
-```py
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-STATIC_ROOT = BASE_DIR / 'static'
-```
-
-# 9.  heroku configs, replace ``HEROKUREMOTE`` with your actual webpage name you want it to be and set the encoding of the opened files to ``UTF8``
-```sh
-mkdir static
-echo "bla" > static/nelegyenures.txt
-echo "web: gunicorn PROJEKT.wsgi --log-file -" > Procfile
-echo python-3.8.11 > runtime.txt
-pip freeze > requirements.txt
-code Procfile
-code runtime.txt
-code requirements.txt
-
-heroku create HEROKUREMOTE
-```
-
-# 10. push to heroku
-```sh
-git add .
-git commit -m "Heroku app created"
-git push origin main
-git push heroku main
-heroku run python manage.py migrate
-heroku run python manage.py createsuperuser
-heroku open
-```
-
-
-
-
-
 
 
 
